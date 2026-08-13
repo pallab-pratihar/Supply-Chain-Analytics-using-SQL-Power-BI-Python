@@ -1,0 +1,21 @@
+# Python
+__pycache__/
+*.pyc
+.ipynb_checkpoints/
+venv/
+.venv/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Power BI
+*.pbix.bak
+~$*.pbix
+
+# Editors
+.vscode/
+.idea/
+
+# Streamlit
+.streamlit/secrets.toml

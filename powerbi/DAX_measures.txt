@@ -1,0 +1,94 @@
+// =====================================================================
+// DAX Measures — Supply Chain Analytics
+// Create a measures table named "_Measures" in Power BI and paste these
+// in one at a time via Modeling > New Measure.
+// Table/column names assume the star schema in /data/processed/.
+// =====================================================================
+
+// ---------- Headline KPIs ----------
+
+Order Fill Rate % =
+DIVIDE(
+    SUM ( fact_supply_chain[number_of_products_sold] ),
+    SUM ( fact_supply_chain[order_quantities] ),
+    0
+) * 100
+
+// Row-level version (capped at 100%), matches the pre-computed column
+// in fact_supply_chain if you'd rather average the pre-capped field:
+Avg Order Fill Rate % (row-level) =
+AVERAGE ( fact_supply_chain[order_fill_rate] )
+
+Inventory Turnover =
+DIVIDE(
+    SUM ( fact_supply_chain[number_of_products_sold] ),
+    SUM ( fact_supply_chain[stock_levels] ),
+    0
+)
+
+On-Time Delivery % =
+DIVIDE(
+    SUM ( fact_supply_chain[on_time_delivery_flag] ),
+    COUNTROWS ( fact_supply_chain ),
+    0
+) * 100
+
+Warehouse Utilization % =
+AVERAGE ( fact_supply_chain[warehouse_utilization_pct] )
+
+// ---------- Revenue & Profitability ----------
+
+Total Revenue =
+SUM ( fact_supply_chain[revenue_generated] )
+
+Total Cost =
+SUM ( fact_supply_chain[costs] )
+
+Total Profit =
+[Total Revenue] - [Total Cost]
+
+Avg Profit Margin % =
+AVERAGE ( fact_supply_chain[profit_margin_pct] )
+
+Total Manufacturing Cost =
+SUM ( fact_supply_chain[manufacturing_costs] )
+
+// ---------- Quality ----------
+
+Avg Defect Rate % =
+AVERAGE ( fact_supply_chain[defect_rates] )
+
+Pass Rate % =
+DIVIDE(
+    SUM ( fact_supply_chain[quality_pass_flag] ),
+    COUNTROWS ( fact_supply_chain ),
+    0
+) * 100
+
+// ---------- Shipping / Logistics ----------
+
+Avg Shipping Cost =
+AVERAGE ( fact_supply_chain[shipping_costs] )
+
+Avg Shipping Time (days) =
+AVERAGE ( fact_supply_chain[shipping_times] )
+
+Avg Lead Time (days) =
+AVERAGE ( fact_supply_chain[lead_times] )
+
+Total Shipping Cost =
+SUM ( fact_supply_chain[total_shipping_cost] )
+
+// ---------- Supporting counts ----------
+
+Total SKUs =
+DISTINCTCOUNT ( fact_supply_chain[product_key] )
+
+Total Orders =
+COUNTROWS ( fact_supply_chain )
+
+// ---------- Conditional formatting helper ----------
+// Use this to color KPI cards red/green based on a target, e.g. On-Time Delivery target 85%
+
+On-Time Delivery Status =
+IF ( [On-Time Delivery %] >= 85, "On Target", "Below Target" )

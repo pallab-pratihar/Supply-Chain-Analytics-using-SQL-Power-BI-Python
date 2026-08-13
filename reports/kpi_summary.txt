@@ -1,0 +1,62 @@
+======================================================================
+SUPPLY CHAIN KPI SUMMARY
+======================================================================
+Total Revenue:              $577,604.82
+Total Profit:                $524,680.24
+Average Profit Margin:        87.44%
+Order Fill Rate:              97.93%
+Inventory Turnover:           28.88x
+On-Time Delivery Rate:        61.00%
+Avg Warehouse Utilization:    47.38%
+
+----------------------------------------------------------------------
+KPIs BY PRODUCT TYPE
+----------------------------------------------------------------------
+              order_fill_rate  inventory_turnover  on_time_delivery_pct    revenue     profit
+product_type                                                                                 
+cosmetics               97.61               16.59                  54.0  161521.27  148154.87
+haircare                95.74               18.53                  62.0  174455.39  157126.53
+skincare               100.00               45.42                  65.0  241628.16  219398.84
+
+----------------------------------------------------------------------
+SUPPLIER PERFORMANCE (sorted by defect rate)
+----------------------------------------------------------------------
+               avg_defect_rate  avg_lead_time  pass_rate_pct
+supplier_name                                               
+Supplier 5                2.67          14.72           17.0
+Supplier 3                2.47          14.33           13.0
+Supplier 2                2.36          16.23           23.0
+Supplier 4                2.34          17.00            0.0
+Supplier 1                1.80          16.78           48.0
+
+----------------------------------------------------------------------
+ROOT CAUSE: MANUFACTURING LEAD TIME vs. DEFECT RATE
+----------------------------------------------------------------------
+lead_time_bucket
+0-10 days     2.11
+11-20 days    2.07
+21+ days      2.66
+
+----------------------------------------------------------------------
+BOTTLENECK CANDIDATES: LOWEST ORDER FILL RATE SKUs
+----------------------------------------------------------------------
+  sku product_type  order_quantities  number_of_products_sold  order_fill_rate
+ SKU2     haircare                88                        8         9.090909
+SKU85    cosmetics                66                       25        37.878788
+SKU45     haircare                52                       24        46.153846
+ SKU0     haircare                96                      802       100.000000
+ SKU1     skincare                37                      736       100.000000
+ SKU3     skincare                59                       83       100.000000
+ SKU4     skincare                56                      871       100.000000
+ SKU5     haircare                66                      147       100.000000
+ SKU6     skincare                58                       65       100.000000
+ SKU7    cosmetics                11                      426       100.000000
+
+----------------------------------------------------------------------
+ROUTE-LEVEL BOTTLENECKS (lead time & cost)
+----------------------------------------------------------------------
+         avg_lead_time  avg_cost  avg_defect_rate
+routes                                           
+Route B          17.22    595.66             2.32
+Route C          16.35    500.47             2.05
+Route A          14.70    485.48             2.34
