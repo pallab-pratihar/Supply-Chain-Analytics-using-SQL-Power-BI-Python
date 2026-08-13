@@ -1,5 +1,1 @@
-Number of product and sale analysis dashboard "https://analytics.zoho.in/open-view/549913000000009283"
-Price analysis dashboard "https://analytics.zoho.in/open-view/549913000000007669"
-Revenue Generated analysis "https://analytics.zoho.in/open-view/549913000000009079"
-Shipping coast analysis "https://analytics.zoho.in/open-view/549913000000007875"
-shipping cost vs price dashboard "https://analytics.zoho.in/open-view/549913000000009376"
+
